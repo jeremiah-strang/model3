@@ -54,6 +54,18 @@
   margin-left: 8px !important;
 }
 
+.margin-sm {
+  margin: 8px !important;
+}
+
+.margin-md {
+  margin: 15px !important;
+}
+
+.margin-lg {
+  margin: 30px !important;
+}
+
 .no-padding {
   padding: 0 !important;
 }
@@ -108,6 +120,18 @@
 }
 .padding-left-sm {
   padding-left: 8px !important;
+}
+
+.padding-sm {
+  padding: 8px !important;
+}
+
+.padding-md {
+  padding: 15px !important;
+}
+
+.padding-lg {
+  padding: 30px !important;
 }
 
 .h100 {

@@ -103,11 +103,10 @@ function loadPreview() {
 
   if (battery === 'performance') {
     $('#all-wheel-drive-chk, #premium-upgrades-package-chk').prop('checked', true);
-    wheels = 'sport';
   }
 
-  if (!$('#enhanced-autopilot-chk').prop('checked')) {
-    $('#full-self-driving-chk').prop('checked', false);
+  if ($('#full-self-driving-chk').prop('checked')) {
+    $('#enhanced-autopilot-chk').prop('checked', true);
   }
 
   $('.battery-option, .color-option, .wheels-option').removeClass('selected');
@@ -212,8 +211,11 @@ $(function() {
       '</div>'
     ).click(function () {
       battery = $(this).attr('id');
+      if (battery === 'performance') {
+        wheels = 'sport';
+      }
       loadPreview();
-    }))
+    }));
   }
 
   var windowHash = window.location.hash

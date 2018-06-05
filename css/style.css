@@ -179,6 +179,7 @@ button.wheels-option.selected {
   }
 
   .battery-option.selected {
+    background-color: #fff;
     border-color: rgba(2,39,133,1);
     box-shadow: 0px 0px 15px 0px rgba(2,39,133,1) !important;
   }
@@ -305,4 +306,18 @@ button.wheels-option > img {
   margin: 0;
   padding: 0;
   display: inline-block;
+}
+
+#battery-wrap,
+#chk-options-wrap,
+#invoice-wrap {
+  padding: 15px;
+  border: 1px solid #ccc;
+  background-color: #fafafa;
+  max-width: calc(33% - 12px) !important;
+  border-radius: 6px;
+}
+#battery-wrap,
+#chk-options-wrap {
+  margin-right: 6px;
 }
