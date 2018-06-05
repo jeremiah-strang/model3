@@ -99,14 +99,16 @@ button.wheels-option.selected {
   font-size: 16px;
   font-size: 16px;
   display: inline-block;
+  color: #333;
 }
 
 .option-price {
   width: 58px;
-  font-size: 16px;
+  font-size: 14px;
   display: inline-block;
   color: #888;
   text-align: right;
+  font-weight: normal;
 }
 
 button.wheels-option {
@@ -181,12 +183,6 @@ button.wheels-option > img {
 #wheels-selection {
   color: #333;
   font-weight: bold;
-}
-
-#color-price,
-#wheels-price {
-  color: #666;
-  font-weight: normal;
 }
 
 .wrap {
