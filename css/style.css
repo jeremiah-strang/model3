@@ -1,5 +1,5 @@
-html, body {
-  height: 100%:
+html, body, .container {
+  height: 100%;
 }
 
 body {
@@ -146,7 +146,7 @@ button.wheels-option {
   border-radius: 20px;
   cursor: pointer;
   height: 40px;
-  margin: 10px 10px 0;
+  margin: 6px 6px 0;
   width: 40px;
 }
   button.color-option:last-child,
@@ -217,18 +217,18 @@ button.wheels-option > img {
 }
 
 #midnight-silver-metallic {
-  background-color: #444 !important;
-  border-color: #444;
+  background-color: #3d3d3d !important;
+  border-color: #3d3d3d;
 }
 
 #deep-blue-metallic {
-  background-color: darkblue !important;
-  border-color: darkblue;
+  background-color: #131b43 !important;
+  border-color: #131b43;
 }
 
 #silver-metallic {
-  background-color: #999 !important;
-  border-color: #999;
+  background-color: #9a9a9a !important;
+  border-color: #9a9a9a;
 }
 
 #pearl-white {
@@ -308,14 +308,30 @@ button.wheels-option > img {
   display: inline-block;
 }
 
+.color-wrap,
+.wheels-wrap,
 #battery-wrap,
 #chk-options-wrap,
 #invoice-wrap {
   padding: 15px;
   border: 1px solid #ccc;
   background-color: #fafafa;
-  max-width: calc(33% - 12px) !important;
   border-radius: 6px;
+}
+
+.color-wrap,
+.wheels-wrap {
+  width: 100%;
+}
+
+.color-wrap {
+  margin-bottom: 6px;
+}
+
+#battery-wrap,
+#chk-options-wrap,
+#invoice-wrap {
+  max-width: calc(33.3% - 4px) !important;
 }
 #battery-wrap,
 #chk-options-wrap {
