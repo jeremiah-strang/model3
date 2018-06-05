@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <title>Tesla Model 3 Configurator</title>
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="css/style.css" rel="stylesheet">
+  <link href="css/helpers.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!-- Page Content -->
+  <div class="container">
+    <div class="row padding-top-lg">
+      <div id="car-preview-wrap" class="col-md-12">
+        <img id="car-preview" src="img/solid_black_aero.png" width="700" />
+      </div>
+    </div><!-- /.row -->
+
+    <div class="row">
+      <div class="wrap centered">
+          <div class="color-wrap col-lg-8">
+            <div class="wrap w100">
+              <h4 class="text-center w100">Color</h4>
+            </div>
+            <div class="wrap w100">
+              <button id="solid_black" class="color-option selected"></button>
+              <button id="midnight_silver_metallic" class="color-option"></button>
+              <button id="deep_blue_metallic" class="color-option"></button>
+              <button id="silver_metallic" class="color-option"></button>
+              <button id="pearl_white" class="color-option"></button>
+              <button id="red" class="color-option"></button>
+            </div>
+            <div class="wrap w100">
+              <h5 id="color-description" class="text-center w100">Solid Black</h5>
+              <h5 id="color-price" class="text-center w100">Included</h5>
+            </div>
+          </div>
+          
+          <div class="wheels-wrap col-lg-4">
+            <div class="wrap w100">
+              <h4 class="text-center w100">Wheels</h4>
+            </div>
+            <div class="wrap w100">
+              <button id="aero" class="wheels-option selected">
+                <img src="img/wheels_aero.png">
+              </button>
+              <button id="sport" class="wheels-option">
+                <img src="img/wheels_sport.png">
+              </button>
+            </div>
+            <div class="wrap w100">
+              <h5 id="wheels-description" class="text-center">Aero</h5>
+              <h5 id="wheels-price" class="text-center">Included</h5>
+            </div>
+          </div>
+      </div>
+    </div><!-- /.row -->
+
+    <div class="row">
+      <div id="chk-options-wrap" class="wrap centered col-md-4">
+      </div>
+    </div><!-- /.row -->
+    
+    <div class="row margin-top-lg">
+      <div class="wrap centered col-md-4">
+        <table id="invoice">
+          <col width="250">
+          <col width="65">
+          <thead>
+            <tr>
+              <th>Option</th>
+              <th>Price</th>
+            </tr>
+          </thead>
+          <tbody id="invoice-body">
+            <tr>
+              <td id="invoice-base-description"></td>
+              <td id="invoice-base-price"></td>
+            </tr>
+            <tr>
+              <td id="invoice-color-description"></td>
+              <td id="invoice-color-price"></td>
+            </tr>
+            <tr>
+              <td id="invoice-wheels-description"></td>
+              <td id="invoice-wheels-price"></td>
+            </tr>
+            <tr id="invoice-destination-and-doc-fee">
+              <td id="invoice-destination-and-doc-fee-description"></td>
+              <td id="invoice-destination-and-doc-fee-price"></td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <th id="invoice-total-description">Total</th>
+              <td id="invoice-total-price"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <script src="vendor/numeral.min.js"></script>
+  <script src="vendor/jquery/jquery.min.js"></script>
+  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="js/index.js"></script>
+</body>
+
+</html>

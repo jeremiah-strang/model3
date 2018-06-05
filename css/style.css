@@ -1,0 +1,253 @@
+::selection {
+  color: #fff;
+  background-color: #8c2232;
+}
+
+::-moz-selection {
+  color: #fff;
+  background-color: #8c2232;
+}
+
+.portfolio-item {
+  margin-bottom: 30px;
+}
+
+.bg-light,
+.navbar-light {
+  background-color: #fff !important;
+}
+
+.bg-dark {
+  background-color: #1a1a1a !important;
+  color: #808080;
+}
+
+.nav-item > a.nav-link {
+  padding: 8px 15px !important;
+  color: #333 !important;
+  cursor: pointer !important;
+  font-size: 18px !important;
+}
+
+
+a.img-link > img {
+  max-width: 100%;
+}
+
+a, a:visited {
+  color: #333;
+}
+
+a:hover {
+  color: #8c2232;
+  text-decoration: none;
+}
+
+a.dropdown-item:active, a.dropdown-item:focus {
+  background-color: #3a3a44 !important;
+  color: #fff !important;
+}
+
+ul.link-list-left {
+  padding-left: 18px;
+}
+
+ul.footer-nav,
+ul.footer-links {
+  list-style-type: none !important;
+  padding-left: 0;
+}
+  ul.footer-nav > li {
+    border-bottom: 1px solid #333;
+  }
+    ul.footer-nav > li > a {
+      color: #999;
+      display: block;
+      padding: 4px 0;
+    }
+      ul.footer-nav > li > a:hover {
+        color: #bbb;
+        display: block;
+        padding: 4px 0;
+      }
+
+ul.footer-links > li {
+  display: block;
+  padding: 4px 0;
+}
+
+ul > li > a > i.fa,
+ul > li > i.fa {
+  margin-right: 7px;
+}
+
+p.copyright {
+  text-align: center;
+  font-size: 12px;
+}
+
+
+h3.section-hdr {
+  color: #8c2232;
+}
+
+.fa-xl {
+  font-size: 36px;
+}
+
+button, .btn {
+  border: 1px solid #3a3a44;
+  display: inline-block;
+  width: auto;
+}
+
+button:focus, .btn:focus, .btn-default:focus, .btn-primary:focus, .btn-success:focus, .btn-danger:focus,
+button:active, .btn:active, .btn-default:active, .btn-primary:active, .btn-success:active, .btn-danger:active {
+  background-color: #4b4b58 !important;
+  border-color: #3a3a44 !important;
+  box-shadow: none !important;
+  color: #e8d2ba !important;
+}
+
+button.btn-default, .btn.btn-default {
+  background-color: #e8d2ba;
+  color: #3a3a44;
+}
+
+button.btn-default:hover, .btn.btn-default:hover {
+  background-color: #e4cbaf;
+}
+
+button.btn-default:focus, .btn.btn-default:focus {
+  background-color: #ecd9c5;
+}
+
+button.btn-primary, .btn.btn-primary {
+  background-color: #3a3a44;
+  color: #e8d2ba;
+}
+
+button.btn-primary:hover, .btn.btn-primary:hover {
+  background-color: #33333c;
+}
+
+button.btn-primary:focus, .btn.btn-primary:focus {
+  background-color: #41414c;
+}
+
+button.btn-icon, .btn.btn-icon {
+  width: 30px;
+  height: 27px;
+  padding: 0;
+  font-size: 18px;
+}
+
+.required {
+  color: #d9534f;
+  display: none;
+}
+
+.breadcrumb {
+  justify-content: flex-end;
+  position: relative;
+  color: #fff;
+  background-color: #8c2232;
+  padding-bottom: 0;
+  border-radius: 0;
+}
+  .breadcrumb h1 {
+    font-weight: lighter !important;
+    font-size: 34px;
+  }
+  .breadcrumb-items {
+    background-color: rgba(0, 0, 0, 0.15);
+    border-top-left-radius: 3px;
+    border-top-right-radius: 3px;
+    float: right;
+    padding: 0 8px 0;
+  }
+  .breadcrumb .breadcrumb-items .breadcrumb-item,
+  .breadcrumb .breadcrumb-items .breadcrumb-item > a {
+    display: inline-block;
+    color: #fff;
+  }
+.breadcrumb-item+.breadcrumb-item::before {
+  color: #fff;
+}
+
+button.color-option,
+button.wheels-option {
+  border: 2px solid #ccc;
+  width: 64px;
+  height: 64px;
+  border-radius: 32px;
+  margin: 20px 10px;
+  cursor: pointer;
+}
+
+button.color-option.selected,
+button.wheels-option.selected {
+  border-color: blue;
+}
+
+button.wheels-option {
+  position: relative;
+  padding: 0;
+}
+
+button.wheels-option > img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  padding: 2px;
+  background-color: #000;
+}
+
+#solid_black {
+  background-color: #000;
+}
+
+#midnight_silver_metallic {
+  background-color: #444;
+}
+
+#deep_blue_metallic {
+  background-color: darkblue;
+}
+
+#silver_metallic {
+  background-color: #999;
+}
+
+#pearl_white {
+  background-color: #fff;
+}
+
+#red {
+  background-color: red;
+}
+
+#car-preview {
+  border-radius: 90px;
+  display: block;
+  margin: 0 auto;
+}
+
+#color-selection,
+#wheels-selection {
+  font-size: 15px;
+  color: #666;
+}
+
+.bordered-wrap {
+  border: 1px solid #ccc;
+  border-radius: 16px;
+  margin: 6px;
+  width: auto;
+  float: left;
+}
+
+.wrap {
+  position: relative;
+  box-sizing: border-box;
+}

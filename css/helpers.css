@@ -1,0 +1,126 @@
+.no-margin {
+  margin: 0 !important;
+}
+.no-margin-left {
+ margin-left: 0 !important;
+}
+.no-margin-right {
+ margin-right: 0 !important;
+}
+.no-margin-top {
+ margin-top: 0 !important;
+}
+.no-margin-bottom {
+ margin-bottom: 0 !important;
+}
+
+.margin-top-lg {
+  margin-top: 30px !important;
+}
+.margin-top-md {
+  margin-top: 15px !important;
+}
+.margin-top-sm {
+  margin-top: 8px !important;
+}
+
+.margin-right-lg {
+  margin-right: 30px !important;
+}
+.margin-right-md {
+  margin-right: 15px !important;
+}
+.margin-right-sm {
+  margin-right: 8px !important;
+}
+
+.margin-bottom-lg {
+  margin-bottom: 30px !important;
+}
+.margin-bottom-md {
+  margin-bottom: 15px !important;
+}
+.margin-bottom-sm {
+  margin-bottom: 8px !important;
+}
+
+.margin-left-lg {
+  margin-left: 30px !important;
+}
+.margin-left-md {
+  margin-left: 15px !important;
+}
+.margin-left-sm {
+  margin-left: 8px !important;
+}
+
+.no-padding {
+  padding: 0 !important;
+}
+.no-padding-left {
+  padding-left: 0 !important;
+}
+.no-padding-right {
+  padding-right: 0 !important;
+}
+.no-padding-top {
+  padding-top: 0 !important;
+}
+.no-padding-bottom {
+  padding-bottom: 0 !important;
+}
+
+.padding-top-lg {
+  padding-top: 30px !important;
+}
+.padding-top-md {
+  padding-top: 15px !important;
+}
+.padding-top-sm {
+  padding-top: 8px !important;
+}
+
+.padding-right-lg {
+  padding-right: 30px !important;
+}
+.padding-right-md {
+  padding-right: 15px !important;
+}
+.padding-right-sm {
+  padding-right: 8px !important;
+}
+
+.padding-bottom-lg {
+  padding-bottom: 30px !important;
+}
+.padding-bottom-md {
+  padding-bottom: 15px !important;
+}
+.padding-bottom-sm {
+  padding-bottom: 8px !important;
+}
+
+.padding-left-lg {
+  padding-left: 30px !important;
+}
+.padding-left-md {
+  padding-left: 15px !important;
+}
+.padding-left-sm {
+  padding-left: 8px !important;
+}
+
+.h100 {
+  height: 100% !important;
+}
+.w100 {
+  width: 100% !important;
+}
+.hw100 {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.centered {
+  margin: 0 auto !important;
+}
