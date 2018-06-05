@@ -220,15 +220,17 @@ $(function() {
 
   var windowHash = window.location.hash
   if (windowHash.length > 1) {
-    var initialOptions = JSON.parse(unescape(windowHash.slice(1, windowHash.length)));
-    if (initialOptions) {
-      battery = initialOptions.battery;
-      color = initialOptions.color;
-      wheels = initialOptions.wheels;
-      for (var i = 0; i < initialOptions.options.length; i++) {
-        $('#' + initialOptions.options[i] + '-chk').prop('checked', true);
+    try {
+      var initialOptions = JSON.parse(unescape(windowHash.slice(1, windowHash.length)));
+      if (initialOptions) {
+        battery = !!batteryOptionMap[initialOptions.battery] ? initialOptions.battery : 'standard';
+        color = !!colorOptions[initialOptions.color] ? initialOptions.color : 'solid-black';
+        wheels = !!wheelOptions[initialOptions.wheels] ? initialOptions.wheels : 'aero';
+        for (var i = 0; i < initialOptions.options.length; i++) {
+          $('#' + initialOptions.options[i] + '-chk').prop('checked', true);
+        }
       }
-    }
+    } catch (err) {}
   }
 
   loadPreview();
