@@ -6,16 +6,6 @@ body {
   background-color: #e5e5e5;
 }
 
-::selection {
-  color: #fff;
-  background-color: #8c2232;
-}
-
-::-moz-selection {
-  color: #fff;
-  background-color: #8c2232;
-}
-
 .portfolio-item {
   margin-bottom: 30px;
 }
