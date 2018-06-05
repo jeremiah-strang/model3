@@ -36,49 +36,6 @@ a, a:visited {
   color: #333;
 }
 
-a:hover {
-  color: #8c2232;
-  text-decoration: none;
-}
-
-a.dropdown-item:active, a.dropdown-item:focus {
-  background-color: #3a3a44 !important;
-  color: #fff !important;
-}
-
-ul.link-list-left {
-  padding-left: 18px;
-}
-
-ul.footer-nav,
-ul.footer-links {
-  list-style-type: none !important;
-  padding-left: 0;
-}
-  ul.footer-nav > li {
-    border-bottom: 1px solid #333;
-  }
-    ul.footer-nav > li > a {
-      color: #999;
-      display: block;
-      padding: 4px 0;
-    }
-      ul.footer-nav > li > a:hover {
-        color: #bbb;
-        display: block;
-        padding: 4px 0;
-      }
-
-ul.footer-links > li {
-  display: block;
-  padding: 4px 0;
-}
-
-ul > li > a > i.fa,
-ul > li > i.fa {
-  margin-right: 7px;
-}
-
 .container, .row {
   background-color: #fff;
 }
@@ -90,44 +47,7 @@ button, .btn {
 
 button:focus, .btn:focus, .btn-default:focus, .btn-primary:focus, .btn-success:focus, .btn-danger:focus,
 button:active, .btn:active, .btn-default:active, .btn-primary:active, .btn-success:active, .btn-danger:active {
-  background-color: #4b4b58 !important;
-  border-color: #3a3a44 !important;
-  box-shadow: none !important;
-  color: #e8d2ba !important;
   outline: 0;
-}
-
-button.btn-default, .btn.btn-default {
-  background-color: #e8d2ba;
-  color: #3a3a44;
-}
-
-button.btn-default:hover, .btn.btn-default:hover {
-  background-color: #e4cbaf;
-}
-
-button.btn-default:focus, .btn.btn-default:focus {
-  background-color: #ecd9c5;
-}
-
-button.btn-primary, .btn.btn-primary {
-  background-color: #3a3a44;
-  color: #e8d2ba;
-}
-
-button.btn-primary:hover, .btn.btn-primary:hover {
-  background-color: #33333c;
-}
-
-button.btn-primary:focus, .btn.btn-primary:focus {
-  background-color: #41414c;
-}
-
-button.btn-icon, .btn.btn-icon {
-  width: 30px;
-  height: 27px;
-  padding: 0;
-  font-size: 18px;
 }
 
 button.color-option,
@@ -175,14 +95,14 @@ button.wheels-option.selected {
   }
 
 .option-description {
-  width: 180px;
+  width: 160px;
   font-size: 16px;
   font-size: 16px;
   display: inline-block;
 }
 
 .option-price {
-  width: 80px;
+  width: 58px;
   font-size: 16px;
   display: inline-block;
   color: #888;
