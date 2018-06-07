@@ -24,7 +24,7 @@
       </div>
 
       <div class="col-lg-3">
-        <div class="color-wrap">
+        <div class="color-wrap section-wrap">
           <div class="wrap w100">
             <h4>Color</h4>
           </div>
@@ -42,7 +42,7 @@
           </div>
         </div>
         
-        <div class="wheels-wrap">
+        <div class="wheels-wrap section-wrap">
           <div class="wrap w100">
             <h4>Wheels</h4>
           </div>
@@ -62,14 +62,16 @@
       </div>
     </div>
     
-    <div class="row padding-bottom-md padding-right-md padding-left-md padding-top-sm">
-      <div id="battery-wrap" class="wrap col-lg-4">
+    <div class="row padding-bottom-sm padding-right-md padding-left-md padding-top-sm">
+      <div id="battery-wrap" class="wrap col-lg-6 section-wrap">
         <h4>Battery</h4>
       </div>
-      <div id="chk-options-wrap" class="wrap col-lg-4">
+      <div id="chk-options-wrap" class="wrap col-lg-6 section-wrap">
         <h4>Options</h4>
       </div>
-      <div id="invoice-wrap" class="wrap col-lg-4">
+    </div>
+    <div class="row padding-bottom-md padding-right-md padding-left-md no-padding-top">
+      <div id="invoice-wrap" class="wrap col-lg-6 section-wrap">
         <h4>Summary</h4>
         <table id="invoice">
           <col width="250">
@@ -102,6 +104,41 @@
             <tr>
               <th id="invoice-total-description">Total</th>
               <td id="invoice-total-price"></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+      <div id="loan-wrap" class="wrap col-lg-6 section-wrap">
+        <h4>Loan</h4>
+        <table>
+          <col width="150"/>
+          <col width="100"/>
+          <tbody>
+            <tr>
+              <td>Down payment <span class="float-right">$</span></td>
+              <td><input id="down-payment" type="number" value="5000" class="w100"></td>
+            </tr>
+            <tr>
+              <td>Loan term</td>
+              <td>
+                <select id="loan-term" class="w100">
+                  <option value="36">36</option>
+                  <option value="60">60</option>
+                  <option value="72" selected>72</option>
+                </select>
+              </td>
+              <td>&nbsp;months</td>
+            </tr>
+            <tr>
+              <td>Interest Rate</td>
+              <td><input id="interest-rate" type="number" value="1.49" class="w100"></td>
+              <td>&nbsp;%</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <tr>
+              <td>Monthly payment <span class="float-right">$</span></td>
+              <td><input id="monthly-payment" type="text" class="w100" readonly></td>
             </tr>
           </tfoot>
         </table>

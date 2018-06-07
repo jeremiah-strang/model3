@@ -7,6 +7,7 @@ var premiumUpgradesPackagePrice = 5000;
 var battery = 'standard';
 var wheels = 'aero';
 var color = 'solid-black';
+var totalPrice = 0;
 
 var batteryOptions = [
   {
@@ -93,6 +94,14 @@ var options = [
   },
 ];
 
+function computeMonthlyPayment() {
+  var interestRate = (parseFloat($('#interest-rate').val()) / 100) / 12;
+  var downPayment = parseFloat($('#down-payment').val());
+  var loanTerm = parseInt($('#loan-term').val());
+  var monthlyPayment = (totalPrice - downPayment) * interestRate / (1 - (Math.pow(1 / (1 + interestRate), loanTerm)));
+  $('#monthly-payment').val(numeral(monthlyPayment).format('0,0'));
+}
+
 function loadPreview() {
   var selectedOptions = {
     battery: battery,
@@ -130,7 +139,7 @@ function loadPreview() {
   var enhancedAutopilotPriceStr = numeral(enhancedAutopilotPrice).format('$0,0');
   var premiumUpgradesPackagePriceStr = numeral(premiumUpgradesPackagePrice).format('$0,0');
 
-  var totalPrice = batteryOption.price + colorPrice + wheelsPrice + destinationAndDocFeePrice;
+  totalPrice = batteryOption.price + colorPrice + wheelsPrice + destinationAndDocFeePrice;
 
   for (var i = 0; i < options.length; i++) {
     var option = options[i];
@@ -172,6 +181,8 @@ function loadPreview() {
   $('#invoice-wheels-description').html(wheelsDescription + ' Wheels');
   $('#invoice-wheels-price').html(wheelsPrice !== 0 ? wheelsPriceStr : '-');
   $('#invoice-total-price').html(totalPriceStr);
+
+  computeMonthlyPayment();
   window.location.hash = JSON.stringify(selectedOptions);
 }
 
@@ -233,5 +244,7 @@ $(function() {
     } catch (err) {}
   }
 
+  $('#loan-term').change(computeMonthlyPayment);
+  $('#down-payment, #interest-rate').change(computeMonthlyPayment);
   loadPreview();
 });
