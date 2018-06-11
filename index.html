@@ -95,6 +95,10 @@
               <td id="invoice-wheels-description"></td>
               <td id="invoice-wheels-price"></td>
             </tr>
+            <tr id="invoice-sales-tax">
+              <td id="invoice-sales-tax-description"></td>
+              <td id="invoice-sales-tax-price"></td>
+            </tr>
             <tr id="invoice-destination-and-doc-fee">
               <td id="invoice-destination-and-doc-fee-description"></td>
               <td id="invoice-destination-and-doc-fee-price"></td>
@@ -131,7 +135,12 @@
             </tr>
             <tr>
               <td>Interest Rate</td>
-              <td><input id="interest-rate" type="number" value="1.49" class="w100"></td>
+              <td><input id="interest-rate" type="number" value="0" class="w100"></td>
+              <td>&nbsp;%</td>
+            </tr>
+            <tr>
+              <td>Sales Tax Rate</td>
+              <td><input id="sales-tax-rate" type="number" value="0" class="w100"></td>
               <td>&nbsp;%</td>
             </tr>
           </tbody>

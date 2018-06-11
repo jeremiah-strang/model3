@@ -1,10 +1,9 @@
-var batteryPrice = 35000;
 var destinationAndDocFeePrice = 1000;
 var longRangeBatteryPrice = 9000;
 var allWheelDrivePrice = 5000;
 var enhancedAutopilotPrice = 5000;
 var premiumUpgradesPackagePrice = 5000;
-var battery = 'standard';
+var battery = 'long-range';
 var wheels = 'aero';
 var color = 'solid-black';
 var totalPrice = 0;
@@ -12,26 +11,41 @@ var totalPrice = 0;
 var batteryOptions = [
   {
     key: 'standard',
+    isDisabled: false,
     description: 'Standard Battery',
     price: 35000,
+    features: [
+      '220 mile range',
+      '0 to 60 mph in 5.6 seconds',
+      '130 mph top speed',
+      '130 miles of range in 30 minutes using global Supercharger network',
+    ],
   },
   {
     key: 'long-range',
+    isDisabled: false,
     description: 'Long-Range Battery',
     price: 44000,
+    features: [
+      '310 mile range',
+      '0 to 60 mph in 5.1 seconds',
+      '140 mph top speed',
+      '170 miles of range in 30 minutes using global Supercharger network',
+    ],
   },
   {
     key: 'performance',
+    isDisabled: false,
     description: 'Performance',
     price: 78000,
+    features: [
+      '310 mile range',
+      '0 to 60 mph in 3.5 seconds',
+      '155 mph top speed',
+      '170 miles of range in 30 minutes using global Supercharger network',
+    ],
   },
 ];
-
-var batteryOptionMap = {};
-for (var i = 0; i < batteryOptions.length; i++) {
-  var option = batteryOptions[i];
-  batteryOptionMap[option.key] = option;
-}
 
 var colorOptions = {
   'solid-black': {
@@ -58,7 +72,7 @@ var colorOptions = {
     description: 'Red Multi-Coat',
     price: 1000,
   },
-}
+};
 
 var wheelsOptions = {
   'aero': {
@@ -69,7 +83,7 @@ var wheelsOptions = {
     description: '19" Sport',
     price: 1500,
   },
-}
+};
 
 var options = [
   {
@@ -94,7 +108,14 @@ var options = [
   },
 ];
 
+var batteryOptionMap = {};
+for (var i = 0; i < batteryOptions.length; i++) {
+  var option = batteryOptions[i];
+  batteryOptionMap[option.key] = option;
+}
+
 function computeMonthlyPayment() {
+  var salesTaxRate = (parseFloat($('#sales-tax-rate').val()) / 100) / 12;
   var interestRate = (parseFloat($('#interest-rate').val()) / 100) / 12;
   var downPayment = parseFloat($('#down-payment').val());
   var loanTerm = parseInt($('#loan-term').val());
@@ -139,7 +160,7 @@ function loadPreview() {
   var enhancedAutopilotPriceStr = numeral(enhancedAutopilotPrice).format('$0,0');
   var premiumUpgradesPackagePriceStr = numeral(premiumUpgradesPackagePrice).format('$0,0');
 
-  totalPrice = batteryOption.price + colorPrice + wheelsPrice + destinationAndDocFeePrice;
+  totalPrice = batteryOption.price + colorPrice + wheelsPrice;
 
   for (var i = 0; i < options.length; i++) {
     var option = options[i];
@@ -148,10 +169,12 @@ function loadPreview() {
       selectedOptions.options.push(option.key);
       if (battery === 'performance' &&
         ['all-wheel-drive', 'premium-upgrades-package', 'long-range-battery'].indexOf(option.key) > -1) {
-        $('#invoice-' + option.key + '-price').html('-');
+        $('#invoice-' + option.key + '-price').css('text-align', 'right').html('-');
       } else {
         totalPrice += option.price;
-        $('#invoice-' + option.key + '-price').html(numeral(option.price).format('$0,0'));
+        $('#invoice-' + option.key + '-price')
+          .html(numeral(option.price).format('$0,0'))
+          .css('text-align', 'right');
       }
       $('#invoice-' + option.key).show();
     } else {
@@ -160,16 +183,24 @@ function loadPreview() {
     }
   }
 
+  var salesTaxRate = parseFloat($('#sales-tax-rate').val()) / 100;
+  var salesTax = salesTaxRate * totalPrice;
+  totalPrice += destinationAndDocFeePrice + salesTax;
   var totalPriceStr = numeral(totalPrice).format('$0,0');
+  var salesTaxStr = numeral(salesTax).format('$0,0');
 
   $('#invoice-base-description').html('Model 3 - ' + batteryOption.description);
-  $('#invoice-base-price').html(batteryPrice !== 0 ? batteryPriceStr : '-');
-  $('#invoice-destination-and-doc-fee-description').html('Destination and Doc Fee');
+  $('#invoice-base-price').html(batteryOption.price !== 0 ? batteryPriceStr : '-');
+  $('#invoice-sales-tax-price').html(salesTax !== 0 ? salesTaxStr : '-');
+  $('#invoice-sales-tax-description').html('Sales Tax');
   $('#invoice-destination-and-doc-fee-price').html(destinationAndDocFeePrice !== 0 ? destinationAndDocFeePriceStr : '-');
+  $('#invoice-destination-and-doc-fee-description').html('Destination and Doc Fee');
   $('#color-description').html(colorOptions[color].description);
   $('#color-price').html(colorPriceStr);
   $('#invoice-color-description').html(colorOptions[color].description + ' Paint');
   $('#invoice-color-price').html(colorPrice !== 0 ? colorPriceStr : '-');
+  $('#invoice-base-price, #invoice-sales-tax-price, #invoice-destination-and-doc-fee-price, #invoice-color-price, #invoice-wheels-price, #invoice-total-price')
+    .css('text-align', 'right');
 
   var wheelsDescription = wheelsOptions[wheels].description;
   if (battery === 'performance' && wheels === 'sport') {
@@ -183,6 +214,10 @@ function loadPreview() {
   $('#invoice-total-price').html(totalPriceStr);
 
   computeMonthlyPayment();
+  selectedOptions.salesTaxRate = parseFloat($('#sales-tax-rate').val()) / 100;
+  selectedOptions.interestRate = parseFloat($('#interest-rate').val()) / 100;
+  selectedOptions.downPayment = parseFloat($('#down-payment').val());
+  selectedOptions.loanTerm = parseInt($('#loan-term').val());
   window.location.hash = JSON.stringify(selectedOptions);
 }
 
@@ -210,24 +245,41 @@ $(function() {
         '<td id="invoice-' + option.key +'-price">' + numeral(option.price).format('$0,0') + '</td>' +
       '</tr>').hide());
   }
+  $('#invoice-sales-tax').appendTo($('#invoice-body'));
   $('#invoice-destination-and-doc-fee').appendTo($('#invoice-body'));
 
   for (var i = 0; i < batteryOptions.length; i++) {
     var option = batteryOptions[i];
-    $('#battery-wrap').append($(
-      '<div id="' + option.key + '" class="battery-option">' +
-        '<input id="' + option.key + '-chk" type="checkbox">' +
-        '<div class="option-description">' + option.description + '</div>' +
-        '<div class="option-price">' + numeral(option.price).format('$0,0') + '</div>' +
-      '</div>'
-    ).click(function () {
-      battery = $(this).attr('id');
-      if (battery === 'performance') {
-        wheels = 'sport';
-      }
-      loadPreview();
-    }));
+    var optionHtml = '<div id="' + option.key + '" class="battery-option">' +
+      '<input id="' + option.key + '-chk" type="checkbox">' +
+      '<div class="option-description">' + option.description + '</div>' +
+      '<div class="option-price">' + numeral(option.price).format('$0,0') + '</div>' +
+      '<ul>';
+  
+    for (var f = 0; f < option.features.length; f++) {
+      optionHtml += '<li>' + option.features[f] + '</li>';
+    }
+
+    optionHtml += '</ul></div>';
+    var optionEl = $(optionHtml);
+    if (!option.isDisabled) {
+      optionEl.click(function () {
+        battery = $(this).attr('id');
+        if (battery === 'performance') {
+          wheels = 'sport';
+        }
+        loadPreview();
+      });
+    } else {
+      optionEl.css('cursor', 'not-allowed');
+    }
+    $('#battery-wrap').append(optionEl);
   }
+
+  var initialDownPayment = 5000;
+  var initialLoanTerm = 72;
+  var initialSalesTaxRate = 0.07;
+  var initialInterestRate = 0.04;
 
   var windowHash = window.location.hash
   if (windowHash.length > 1) {
@@ -236,15 +288,41 @@ $(function() {
       if (initialOptions) {
         battery = !!batteryOptionMap[initialOptions.battery] ? initialOptions.battery : 'standard';
         color = !!colorOptions[initialOptions.color] ? initialOptions.color : 'solid-black';
-        wheels = !!wheelOptions[initialOptions.wheels] ? initialOptions.wheels : 'aero';
+        wheels = !!wheelsOptions[initialOptions.wheels] ? initialOptions.wheels : 'aero';
+        
         for (var i = 0; i < initialOptions.options.length; i++) {
           $('#' + initialOptions.options[i] + '-chk').prop('checked', true);
         }
+
+        if (initialOptions.downPayment &&
+            !isNaN(initialOptions.downPayment)) {
+          initialDownPayment = initialOptions.downPayment;
+        }
+
+        if (initialOptions.loanTerm &&
+            !isNaN(initialOptions.loanTerm) &&
+            [36, 60, 72].indexOf(initialOptions.loanTerm)) {
+          initialLoanTerm = initialOptions.loanTerm;
+        }
+
+        if (initialOptions.salesTaxRate &&
+          !isNaN(initialOptions.salesTaxRate)) {
+          initialSalesTaxRate = initialOptions.salesTaxRate;
+        }
+
+        if (initialOptions.interestRate &&
+          !isNaN(initialOptions.interestRate)) {
+          initialInterestRate = initialOptions.interestRate;
+        }
       }
-    } catch (err) {}
+    } catch (error) {}
   }
 
+  $('#down-payment').val(initialDownPayment);
+  $('#interest-rate').val(Math.round(initialInterestRate * 100 * 100) / 100);
+  $('#sales-tax-rate').val(Math.round(initialSalesTaxRate * 100 * 100) / 100);
+
   $('#loan-term').change(computeMonthlyPayment);
-  $('#down-payment, #interest-rate').change(computeMonthlyPayment);
+  $('#down-payment, #interest-rate, #sales-tax-rate').change(loadPreview);
   loadPreview();
 });
