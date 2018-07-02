@@ -57,19 +57,22 @@ button:active, .btn:active, .btn-default:active, .btn-primary:active, .btn-succe
   outline: 0;
 }
 
+
 button.color-option,
 button.wheels-option {
   border: 1px solid #333;
   border-radius: 20px;
   cursor: pointer;
   height: 40px;
-  margin: 6px 6px 0;
+  margin: 6px;
   width: 40px;
 }
-  button.color-option:last-child,
-  button.wheels-option:last-child {
-    margin-right: 0;
-  }
+
+button.color-option {
+  padding: 0;
+  height: 32px;
+  width: 32px;
+}
 
 button.color-option.selected,
 button.wheels-option.selected {
@@ -163,6 +166,11 @@ button.wheels-option > img {
   background-color: #000;
 }
 
+
+button.color-option > img {
+  height: 100%;
+}
+
 #solid-black {
   background-color: #000 !important;
 }
@@ -177,7 +185,7 @@ button.wheels-option > img {
   border-color: #131b43;
 }
 
-#silver-metallic {
+#metallic-silver {
   background-color: #9a9a9a !important;
   border-color: #9a9a9a;
 }
@@ -200,6 +208,13 @@ button.wheels-option > img {
   border-radius: 50px;
   display: block;
   margin: 0 auto;
+  position: absolute;
+  clip: 40% 40% 40% 40%;
+  margin-left: -100px;
+  margin-top: -150px;
+  width: 1000px;
+  max-width: 120%;
+  height: auto;
 }
 
 .color-wrap,
@@ -229,11 +244,16 @@ button.wheels-option > img {
   box-sizing: border-box;
 }
 
-#invoice tfoot {
+#invoice tfoot, #invoice-subtotal {
   border-top: 1px solid #333;
 }
 
-#invoice-total-description {
+#invoice-subtotal {
+  height: 32px;
+}
+
+#invoice-total-description,
+#invoice-subtotal-description {
   text-align: right;
   padding-right: 10px;
 }

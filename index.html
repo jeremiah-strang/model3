@@ -20,7 +20,7 @@
   <div class="container">
     <div class="row padding-top-md">
       <div id="car-preview-wrap" class="padding-top-lg col-lg-9">
-        <img id="car-preview" src="img/solid-black-aero.png" width="700" />
+        <img id="car-preview" src="" width="700" />
       </div>
 
       <div class="col-lg-3">
@@ -29,12 +29,27 @@
             <h4>Color</h4>
           </div>
           <div class="wrap w100">
-            <button id="solid-black" class="color-option selected"></button>
-            <button id="midnight-silver-metallic" class="color-option"></button>
-            <button id="deep-blue-metallic" class="color-option"></button>
-            <button id="silver-metallic" class="color-option"></button>
-            <button id="pearl-white" class="color-option"></button>
-            <button id="red" class="color-option"></button>
+            <button id="solid-black" class="color-option selected">
+              <img src="img/colors/solid-black.png"
+            </button>
+            <button id="midnight-silver-metallic" class="color-option">
+              <img src="img/colors/midnight-silver-metallic.png"
+            </button>
+            <button id="obsidian-black-metallic" class="color-option">
+              <img src="img/colors/obsidian-black-metallic.png"
+            </button>
+            <button id="deep-blue-metallic" class="color-option">
+              <img src="img/colors/deep-blue-metallic.png"
+            </button>
+            <button id="metallic-silver" class="color-option">
+              <img src="img/colors/metallic-silver.png"
+            </button>
+            <button id="pearl-white" class="color-option">
+              <img src="img/colors/pearl-white.png"
+            </button>
+            <button id="red" class="color-option">
+              <img src="img/colors/red.png"
+            </button>
           </div>
           <div class="wrap w100 margin-top-sm">
             <div id="color-description" class="option-description"></div>
@@ -47,11 +62,14 @@
             <h4>Wheels</h4>
           </div>
           <div class="wrap w100">
-            <button id="aero" class="wheels-option selected">
-              <img src="img/wheels-aero.png">
+            <button id="18inch-aero" class="wheels-option selected">
+              <img src="img/wheels/18inch-aero.jpg">
             </button>
-            <button id="sport" class="wheels-option">
-              <img src="img/wheels-sport.png">
+            <button id="19inch-sport" class="wheels-option">
+              <img src="img/wheels/19inch-sport.jpg">
+            </button>
+            <button id="20inch-sport" class="wheels-option">
+              <img src="img/wheels/20inch-sport.jpg">
             </button>
           </div>
           <div class="wrap w100 margin-top-sm">
@@ -91,9 +109,13 @@
               <td id="invoice-color-description"></td>
               <td id="invoice-color-price"></td>
             </tr>
-            <tr>
+            <tr id="invoice-wheels">
               <td id="invoice-wheels-description"></td>
               <td id="invoice-wheels-price"></td>
+            </tr>
+            <tr id="invoice-subtotal">
+              <th id="invoice-subtotal-description">Subtotal</th>
+              <td id="invoice-subtotal-price"></td>
             </tr>
             <tr id="invoice-sales-tax">
               <td id="invoice-sales-tax-description"></td>

@@ -4,9 +4,10 @@ var allWheelDrivePrice = 5000;
 var enhancedAutopilotPrice = 5000;
 var premiumUpgradesPackagePrice = 5000;
 var battery = 'long-range';
-var wheels = 'aero';
+var wheels = '18inch-aero';
 var color = 'solid-black';
-var totalPrice = 0;
+var viewAngle = 'front-angled'; // 'side-profile';
+var totalPrice = subtotalPrice = 0;
 
 var batteryOptions = [
   {
@@ -37,7 +38,7 @@ var batteryOptions = [
     key: 'performance',
     isDisabled: false,
     description: 'Performance',
-    price: 78000,
+    price: 64000,
     features: [
       '310 mile range',
       '0 to 60 mph in 3.5 seconds',
@@ -56,55 +57,79 @@ var colorOptions = {
     description: 'Midnight Silver Metallic',
     price: 1000,
   },
+  'obsidian-black-metallic': {
+    description: 'Obsidian Black Metallic',
+    price: 1000,
+  },
   'deep-blue-metallic': {
     description: 'Deep Blue Metallic',
     price: 1000,
   },
-  'silver-metallic': {
-    description: 'Silver Metallic',
+  'metallic-silver': {
+    description: 'Metallic Silver',
     price: 1000,
   },
   'pearl-white': {
     description: 'Pearl White Multi-Coat',
-    price: 1000,
+    price: 1500,
   },
   'red': {
     description: 'Red Multi-Coat',
-    price: 1000,
+    price: 1500,
   },
 };
 
 var wheelsOptions = {
-  'aero': {
+  '18inch-aero': {
     description: '18" Aero',
     price: 0,
   },
-  'sport': {
+  '19inch-sport': {
     description: '19" Sport',
     price: 1500,
+  },
+  '20inch-sport': {
+    description: '20" Sport',
+    price: 0,
   },
 };
 
 var options = [
   {
+    key: 'performance-upgrades-package',
+    description: 'Performance Upgrades Package',
+    price: 5000,
+    packages: ['performance'],
+  },
+  {
+    key: 'premium-white-interior',
+    description: 'Premium White Interior',
+    price: 1500,
+    packages: ['performance'],
+  },
+  {
     key: 'all-wheel-drive',
     description: 'All-Wheel Drive',
     price: 5000,
+    packages: ['standard', 'long-range'],
   },
   {
     key: 'premium-upgrades-package',
     description: 'Premium Upgrades Package',
     price: 5000,
+    packages: ['standard', 'long-range'],
   },
   {
     key: 'enhanced-autopilot',
     description: 'Enhanced Autopilot',
     price: 5000,
+    packages: ['standard', 'long-range', 'performance'],
   },
   {
     key: 'full-self-driving',
     description: 'Full Self-Driving Capability',
     price: 3000,
+    packages: ['standard', 'long-range', 'performance'],
   },
 ];
 
@@ -124,15 +149,41 @@ function computeMonthlyPayment() {
 }
 
 function loadPreview() {
+  if (battery === 'performance') {
+    $('#19inch-sport').hide();
+    $('#20inch-sport').show();
+    $('#all-wheel-drive-chk, #premium-upgrades-package-chk').prop('checked', true);
+    if ($('#performance-upgrades-package-chk').prop('checked')) {
+      wheels = '20inch-sport';
+    } else {
+      wheels = '18inch-aero';
+    }
+  } else {
+    $('#20inch-sport').hide();
+    $('#19inch-sport').show();
+    $('#performance-upgrades-package-chk').prop('checked', false);
+    if (wheels === '20inch-sport') {
+      wheels = '19inch-sport';
+    }
+  }
+
+  for (var i = 0; i < options.length; i++) {
+    var option = options[i];
+    if (option.packages.indexOf(battery) > -1) {
+      $('#option-wrap-' + option.key).show();
+    } else {
+      $('#option-wrap-' + option.key).hide();
+    }
+  }
+
+  $('.wheels-option').removeClass('selected');
+  $('#' + wheels).addClass('selected');
+
   var selectedOptions = {
     battery: battery,
     wheels: wheels,
     color: color,
     options: [],
-  }
-
-  if (battery === 'performance') {
-    $('#all-wheel-drive-chk, #premium-upgrades-package-chk').prop('checked', true);
   }
 
   if ($('#full-self-driving-chk').prop('checked')) {
@@ -145,22 +196,22 @@ function loadPreview() {
   $('#' + color).addClass('selected');
   $('#' + wheels).addClass('selected');
   $('#' + battery + '-chk').prop('checked', true);
-  $('#car-preview').attr('src', 'img/' + color + '-' + wheels + '.png');
+  $('#car-preview').attr('src', 'img/' + viewAngle + '/' + color + '-' + wheels + '.png');
 
   var batteryOption = batteryOptionMap[battery];
 
   var batteryPriceStr = numeral(batteryOption.price).format('$0,0');
   var destinationAndDocFeePriceStr = numeral(destinationAndDocFeePrice).format('$0,0');
-  var colorPrice = battery !== 'performance' ? colorOptions[color].price : 0;
+  var colorPrice = colorOptions[color].price;
   var colorPriceStr = colorPrice !== 0 ? numeral(colorPrice).format('$0,0') : 'Included';
-  var wheelsPrice = battery !== 'performance' ? wheelsOptions[wheels].price : 0;
+  var wheelsPrice = wheelsOptions[wheels].price;
   var wheelsPriceStr = wheelsPrice !== 0 ? numeral(wheelsPrice).format('$0,0') : 'Included';
   var longRangeBatteryPriceStr = numeral(longRangeBatteryPrice).format('$0,0');
   var allWheelDrivePriceStr = numeral(allWheelDrivePrice).format('$0,0');
   var enhancedAutopilotPriceStr = numeral(enhancedAutopilotPrice).format('$0,0');
   var premiumUpgradesPackagePriceStr = numeral(premiumUpgradesPackagePrice).format('$0,0');
 
-  totalPrice = batteryOption.price + colorPrice + wheelsPrice;
+  subtotalPrice = batteryOption.price + colorPrice + wheelsPrice;
 
   for (var i = 0; i < options.length; i++) {
     var option = options[i];
@@ -171,7 +222,7 @@ function loadPreview() {
         ['all-wheel-drive', 'premium-upgrades-package', 'long-range-battery'].indexOf(option.key) > -1) {
         $('#invoice-' + option.key + '-price').css('text-align', 'right').html('-');
       } else {
-        totalPrice += option.price;
+        subtotalPrice += option.price;
         $('#invoice-' + option.key + '-price')
           .html(numeral(option.price).format('$0,0'))
           .css('text-align', 'right');
@@ -184,8 +235,9 @@ function loadPreview() {
   }
 
   var salesTaxRate = parseFloat($('#sales-tax-rate').val()) / 100;
-  var salesTax = salesTaxRate * totalPrice;
-  totalPrice += destinationAndDocFeePrice + salesTax;
+  var salesTax = salesTaxRate * subtotalPrice;
+  totalPrice = subtotalPrice + destinationAndDocFeePrice + salesTax;
+  var subtotalPriceStr = numeral(subtotalPrice).format('$0,0');
   var totalPriceStr = numeral(totalPrice).format('$0,0');
   var salesTaxStr = numeral(salesTax).format('$0,0');
 
@@ -203,14 +255,16 @@ function loadPreview() {
     .css('text-align', 'right');
 
   var wheelsDescription = wheelsOptions[wheels].description;
-  if (battery === 'performance' && wheels === 'sport') {
-    wheelsDescription = '20" Sport';
+  if (battery === 'performance') {
+    $('#19inch-sport').hide();
+    $('#20inch-sport').show();
   }
 
   $('#wheels-description').html(wheelsDescription);
   $('#wheels-price').html(wheelsPriceStr);
   $('#invoice-wheels-description').html(wheelsDescription + ' Wheels');
   $('#invoice-wheels-price').html(wheelsPrice !== 0 ? wheelsPriceStr : '-');
+  $('#invoice-subtotal-price').html(subtotalPriceStr);
   $('#invoice-total-price').html(totalPriceStr);
 
   computeMonthlyPayment();
@@ -222,22 +276,31 @@ function loadPreview() {
 }
 
 $(function() {
-  $('.wheels-option').click(function () {
+  $('.wheels-option').click(function (e) {
     wheels = $(this).attr('id');
+    if (battery === 'performance') {
+      $('#performance-upgrades-package-chk').prop('checked', wheels === '20inch-sport');
+    }
     loadPreview();
   });
 
-  $('.color-option').click(function () {
+  $('.color-option').click(function (e) {
     color = $(this).attr('id');
     loadPreview();
   });
 
   for (var i = 0; i < options.length; i++) {
     var option = options[i];
-    $('#chk-options-wrap').append(
-      $('<label class="chk-wrap w100"></label>')
-      .append($('<input id="' + option.key + '-chk" type="checkbox">').click(loadPreview))
-      .append('<h4>' + option.description + ' - ' + numeral(option.price).format('$0,0') + '</h4>'))
+    var optionWrap = $('<label id="option-wrap-' + option.key + '" class="chk-wrap w100"></label>')
+        .append($('<input id="' + option.key + '-chk" type="checkbox">').click(loadPreview))
+        .append('<h4>' + option.description + ' - ' + numeral(option.price).format('$0,0') + '</h4>');
+    
+    if (battery !== 'performance' && option.key === 'performance-upgrades-package') {
+      optionWrap.hide();
+      $('#' + option.key).prop('checked', false);
+    }
+
+    $('#chk-options-wrap').append(optionWrap);
 
     $('#invoice-body').append(
       $('<tr id="invoice-' + option.key + '">' +
@@ -245,6 +308,7 @@ $(function() {
         '<td id="invoice-' + option.key +'-price">' + numeral(option.price).format('$0,0') + '</td>' +
       '</tr>').hide());
   }
+  $('#invoice-subtotal').appendTo($('#invoice-body'));
   $('#invoice-sales-tax').appendTo($('#invoice-body'));
   $('#invoice-destination-and-doc-fee').appendTo($('#invoice-body'));
 
@@ -266,7 +330,7 @@ $(function() {
       optionEl.click(function () {
         battery = $(this).attr('id');
         if (battery === 'performance') {
-          wheels = 'sport';
+          wheels = '18inch-aero';
         }
         loadPreview();
       });
@@ -278,8 +342,8 @@ $(function() {
 
   var initialDownPayment = 5000;
   var initialLoanTerm = 72;
-  var initialSalesTaxRate = 0.07;
-  var initialInterestRate = 0.04;
+  var initialSalesTaxRate = 0.065;
+  var initialInterestRate = 0.037;
 
   var windowHash = window.location.hash
   if (windowHash.length > 1) {
@@ -288,7 +352,7 @@ $(function() {
       if (initialOptions) {
         battery = !!batteryOptionMap[initialOptions.battery] ? initialOptions.battery : 'standard';
         color = !!colorOptions[initialOptions.color] ? initialOptions.color : 'solid-black';
-        wheels = !!wheelsOptions[initialOptions.wheels] ? initialOptions.wheels : 'aero';
+        wheels = !!wheelsOptions[initialOptions.wheels] ? initialOptions.wheels : '18inch-aero';
         
         for (var i = 0; i < initialOptions.options.length; i++) {
           $('#' + initialOptions.options[i] + '-chk').prop('checked', true);
@@ -321,8 +385,9 @@ $(function() {
   $('#down-payment').val(initialDownPayment);
   $('#interest-rate').val(Math.round(initialInterestRate * 100 * 100) / 100);
   $('#sales-tax-rate').val(Math.round(initialSalesTaxRate * 100 * 100) / 100);
+  $('#loan-term').val(initialLoanTerm);
 
   $('#loan-term').change(computeMonthlyPayment);
-  $('#down-payment, #interest-rate, #sales-tax-rate').change(loadPreview);
+  $('#down-payment, #interest-rate, #sales-tax-rate, #loan-term').change(loadPreview);
   loadPreview();
 });
