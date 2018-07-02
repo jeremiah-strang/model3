@@ -197,6 +197,10 @@ function loadPreview() {
   $('#' + wheels).addClass('selected');
   $('#' + battery + '-chk').prop('checked', true);
   $('#car-preview').attr('src', 'img/' + viewAngle + '/' + color + '-' + wheels + '.png');
+  $('.loading-img-wrap').show();
+  $(function () {
+    $('.loading-img-wrap').hide();
+  });
 
   var batteryOption = batteryOptionMap[battery];
 
