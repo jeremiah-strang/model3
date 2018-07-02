@@ -199,11 +199,11 @@ function loadPreview() {
   $('#car-preview').attr('src', 'img/' + viewAngle + '/' + color + '-' + wheels + '.png');
   $('.loading-img-wrap').show();
 
-  setTimeout(function () {
-    $(function () {
-      $('.loading-img-wrap').hide();
-    });
-  }, 3500);
+  // setTimeout(function () {
+  //   $(function () {
+  //     $('.loading-img-wrap').hide();
+  //   });
+  // }, 3500);
 
   var batteryOption = batteryOptionMap[battery];
 
@@ -283,6 +283,10 @@ function loadPreview() {
 }
 
 $(function() {
+  document.getElementById('car-preview').onload = function () {
+    $('.loading-img-wrap').hide();
+  };
+
   $('.wheels-option').click(function (e) {
     wheels = $(this).attr('id');
     if (battery === 'performance') {
